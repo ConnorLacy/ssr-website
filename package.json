@@ -1,8 +1,11 @@
 {
     "scripts": {
-        "start": "node server/index.mjs"
+        "start": "node src/index.mjs"
     },
     "dependencies": {
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "path": "^0.12.7",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1"
     }
 }
