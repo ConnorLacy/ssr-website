@@ -1,13 +1,17 @@
 import express from 'express';
 import path from 'path';
-const __dirname = path.resolve()
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import App from './app/app.mjs'
 
+const __dirname = path.resolve()
 const server = express()
 const port = 8080
 
 server.use('/assets', express.static(path.resolve(__dirname, 'dist')))
 server.get('/', (req, res) => {
-    let body = `
+    const reactive = ReactDOMServer.renderToString(<App/>);
+    const body = `
         <html lang="en">
             <head>
                 <meta charset="UTF-8"/>
@@ -16,8 +20,9 @@ server.get('/', (req, res) => {
             </head>
             <body>
                 <h1>Some other stuff</h1>
-                <div id="app"></div>
+                <div id="app">${reactive}</div>
             </body>
+            <script src="/assets/bundle.js"></script>
         </html>
     `
     res.send(body)
