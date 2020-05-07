@@ -1,7 +1,7 @@
-import http from 'http';
+import express from 'express';
 
-//create a server object:
-http.createServer(function (req, res) {
-  res.write('Tester McTesterson!'); //write a response to the client
-  res.end(); //end the response
-}).listen(8080); //the server object listens on port 8080
+const app = express()
+const port = 8080
+
+app.get('/', (req, res) => res.send("Testy Boi"))
+app.listen(port, () => console.log(`Your server is running on port ${port}`))
